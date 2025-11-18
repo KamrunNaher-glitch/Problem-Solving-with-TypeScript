@@ -8,9 +8,6 @@ function formatValue(value:string | number | boolean) : string | number | boolea
     }
 }
 
-// console.log(formatValue("keya"));
-// console.log(formatValue(50));
-// console.log(formatValue(false));
 
 function getLength <T extends string | any[]>(value:T) : number {
     if(typeof value === "string"){
@@ -21,9 +18,6 @@ function getLength <T extends string | any[]>(value:T) : number {
     return 0 ;
 }
 
-// console.log(getLength("typescript"));
-// console.log(getLength("typescriptwithgenericfunction"));
-// console.log(getLength([10,20,30,40,25,14,78]));
 
 class Person {
     name: string;
@@ -34,13 +28,10 @@ class Person {
         this.age  = age
     }
     getDetails() : string{
-        return `Name:${this.name},Age: ${this.age}`
+        return `'Name:${this.name},Age: ${this.age}'`
 
     }
 }
-
-// const person1 = new Person("Jon Don" ,30)
-// console.log(person1.getDetails())
 
 
 interface IFilterItems {
@@ -52,13 +43,6 @@ function filterByRating(items: IFilterItems[]): IFilterItems[] {
     return items.filter((item) => item.rating >= 4);
 }
 
-// const books = [
-//   { title: 'Book A', rating: 4.5 },
-//   { title: 'Book B', rating: 3.2 },
-//   { title: 'Book C', rating: 5.0 },
-// ];
-
-// console.log(filterByRating(books));
 
 interface IUser {
     id:number;
@@ -70,15 +54,7 @@ interface IUser {
     return users.filter((user) =>user.isActive === true)
  }
 
-//  const users: IUser[] = [
-//   { id: 1, name: 'Rakib', email: 'rakib@example.com', isActive: true },
-//   { id: 2, name: 'Asha', email: 'asha@example.com', isActive: false },
-//   { id: 2, name: 'keya', email: 'asha@example.com', isActive: false },
-//   { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive: true },
-// ];
-
-// console.log(filterActiveUsers(users));
-
+ 
 interface IBook {
     title:string;
     author:string;
@@ -96,14 +72,7 @@ function printBookDetails(book:IBook): void{
     
 }
 
-// const myBook: IBook = {
-//   title: 'The Great Gatsby',
-//   author: 'F. Scott Fitzgerald',
-//   publishedYear: 1925,
-//   isAvailable: false,
-// };
 
-// printBookDetails(myBook);
 
 function getUniqueValues <T extends number | string>(array1:T[],array2:T[]) :T[] {
     const result : T[] = [];
@@ -137,9 +106,25 @@ function getUniqueValues <T extends number | string>(array1:T[],array2:T[]) :T[]
     return result
 
 }
-// const array1 = [1, 2, 3, 4, 5,15,22,24];
-// const array2 = [3, 4, 5, 6, 7,11,25,22];
-// console.log(getUniqueValues(array1, array2));
+
+
+
+interface IProduct {
+    name: string;
+    price:number;
+    quantity: number;
+    discount?:number;
+}
+
+function calculateTotalPrice(products:IProduct[]) : number {
+    const totalPrice = products.reduce((acc,item)=>{
+        const discount = item.discount || 0 ;
+        const result = item.price * item.quantity *(1-discount/100);
+        return acc + result;
+    },0);
+    return totalPrice
+}
+
 
 
 
